@@ -3,11 +3,18 @@ const app = express()
 
 app.set('view engine', 'pug')
 
-app.get('/', (req, res) =>{
+//development process
+app.use('/static', express.static('public'))
+
+app.get('/', (req, res) => {
 	res.render('home')
 })
 
-app.listen(8000, err  =>{
+app.get('/create-note', (req, res) => {
+	res.render('create')
+})
+
+app.listen(8000, err  => {
 	if (err) throw err
 
 	console.log('App is running...')
