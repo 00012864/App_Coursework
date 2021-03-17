@@ -33,7 +33,7 @@ a {
 }
 
 .logo > a:hover {
-	color: tomato;
+	color: violet;
 }
 
 .nav > a {
@@ -43,7 +43,7 @@ a {
 }
 
 .nav > a:hover {
-	color: tomato;
+	color: navy;
 }
 
 /* Homepage Styles */
@@ -96,7 +96,7 @@ a {
 }
 
 /* Notes Page */
-.note-wrapper {
+.quote-wrapper {
 	max-width: 60%;
 	display: flex;
 	justify-content: space-between;
@@ -105,7 +105,7 @@ a {
 
 }
 
-.note {
+.quote {
 	display: inline-block;
 	padding: 10px;
 	font-size: 1.5rem;
@@ -121,4 +121,12 @@ a {
 
 .delete:hover {
 	color: #fff;
+}
+
+.topic {
+	color: navy;
+}
+
+.label {
+	color: purple;
 }

@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+	main.content
+		h1 All Quotes
+
+		each quote in quoteList
+			div.quote-wrapper 
+				a.quote(href='/quotes/detail')= quote
+				a.delete(href='#') Delete
+
+

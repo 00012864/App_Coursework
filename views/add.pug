@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+	main.content
+		h1.form-title Add Quotes Form
+
+		form.form(method='POST' action='/add-quote')
+			label.topic Topic of the Quote
+			input.input(type='text' name='title')
+
+			label.label Quote 
+			textarea.input(rows='10' cols='8' name='desc')
+
+			button.btn Add the quote

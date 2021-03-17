@@ -10,15 +10,15 @@ app.get('/', (req, res) => {
 	res.render('home')
 })
 
-app.get('/create-note', (req, res) => {
-	res.render('create')
+app.get('/add-quote', (req, res) => {
+	res.render('add')
 })
 
-app.get('/notes', (req, res)=> {
-	res.render('notes', { noteList: ['First note', 'Second note'] })
+app.get('/quotes', (req, res)=> {
+	res.render('quotes', { quoteList: ['Faith', 'Second note'] })
 })
 
-app.get('/notes/detail', (req, res)=> {
+app.get('/quotes/detail', (req, res)=> {
 	res.render('detail')
 })
 
