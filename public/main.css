@@ -95,6 +95,28 @@ a {
 	border: none;
 }
 
+.success {
+	display: inline-block;
+	margin-top: 20px;
+	background: lightgreen;
+	margin-left: 20px;
+	padding: 10px;
+	border: 1px solid green;
+	color: green;
+	font-size: 1.2rem;
+}
+
+.error {
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 20px;
+	padding: 10px;
+	border: 1.5px black;
+	color: red;
+	background: pink;
+	font-size: 1.2rem;
+}
+
 /* Notes Page */
 .quote-wrapper {
 	max-width: 60%;
