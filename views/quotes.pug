@@ -4,9 +4,10 @@ block content
 	main.content
 		h1.quote-title All Quotes
 
+		if id 
+			p.success {Quote with id #{ id } is deleted! 
+
 		each quote in quoteList
 			div.quote-wrapper 
-				a.quote(href=`/quotes/${ quote.id }`)= quote.title
-				a.delete(href='#') Delete
-
-
+				a.quote(href=`/quotes/${ quote.id }`) #{ quote.title }
+				a.delete(href=`/quotes/${ quote.id }/delete`) Delete

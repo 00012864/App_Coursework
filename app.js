@@ -9,6 +9,8 @@ app.use(express.urlencoded({extended: false}))
 //development process
 app.use('/static', express.static('public'))
 
+const db = './data/quotes.json'
+
 app.get('/', (req, res) => {
 	res.render('home')
 })
@@ -20,44 +22,85 @@ app.get('/add', (req, res) => {
 app.post('/add', (req, res)=> {
 
 	const title = req.body.title
-	const desc = req.body.desc
+	const description = req.body.description
 
-	if (title.trim() !== '' && desc.trim() !== ''){
-
-		fs.readFile('./data/quotes.json', (err, data) => {
+	if (title.trim() === '' && desc.trim() === '') {
+		res.render('add', {error: true})
+	} else {
+		fs.readFile(db, (err, data) => {
 		if(err) throw err
 
 		const quotes = JSON.parse(data)
 
-		quotes.push({
+		const newQuote = {
 			id: id(),
 			title: title,
-			description: desc
-		})
+			description: description
+		}
 
-		fs.writeFile('./data/quotes.json', JSON.stringify(quotes), err => {
+		notes.push(newQuote)
+
+		fs.writeFile(db, JSON.stringify(quotes), err => {
 			if (err) throw err
 
 			res.render('add', { success: true })
 		})
 	})
 
-	} else {
-			res.render('add', {error: true})
-	}
+	} 
 })
 
 app.get('/quotes', (req, res) => {
 
-	fs.readFile('./data/quotes.json', (err, data) => {
+	fs.readFile(db, (err, data) => {
 		const quotes = JSON.parse(data)
 
-		res.render('quotes', { quoteList: ['Faith', 'Second note'] })
+		res.render('quotes', { quoteList: quotes })
 	})
 })
 
-app.get('/quotes/detail', (req, res) => {
-	res.render('detail')
+app.get('/quotes/:id', (req, res) => {
+	const id = req.params.id
+
+	fs.readFile(db, (err, data) => {
+		if(err) throw err 
+
+		const quotes = JSON.parse(data)
+
+		const quote = quotes.filter(quote => quote.id == id)[0]
+
+		res.render('detail', { quote: quote })
+	})
+})
+
+app.get('/quotes/:id/delete', (req, res) => {
+	const id = req.params.id
+
+	fs.readFile(db, (err, data) => {
+		if (err) throw err
+
+		const quotes = JSON.parse(data)
+
+		const filteredQuotes = quotes.filter(quote => quote.id != id)
+
+		fs.writeFile(db, JSON.stringify(filteredQuotes), err => {
+			if (err) throw err
+
+			res.render('quotes', { id: id, notes: filteredQuotes })
+		})
+	})
+})
+
+//rest api
+app.get('/api/v1/quotes', (req, res) => {
+
+	fs.readFile('./data/quotes.json', (err, data) => {
+		if (err) throw err
+
+		const quotes = JSON.parse(data)
+
+		res.json(quotes)
+	})
 })
 
 app.listen(8000, err  => {
