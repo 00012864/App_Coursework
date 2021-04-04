@@ -1,6 +1,17 @@
 extends layout.pug
 
 block content
-	main.content
-		h1.content-title This is a simple app to create and add meaningful quotes 
+	section#introSection
+		div This is a simple app to create and add meaningful quotes 
 		a.featured(href='/add') Add a new quote
+
+	section#imageSection
+		h2 Image 1
+		div.card 
+			h3 Image Name
+			div.card-box
+				div.card-image
+					img(src="./public/images/nature.jpeg")
+				div.card-content
+					p ekhtshhtsk
+		

@@ -4,10 +4,9 @@ const app = express()
 
 app.set('view engine', 'pug')
 
-app.use(express.urlencoded({extended: false}))
-
 //development process
 app.use('/static', express.static('public'))
+app.use(express.urlencoded({ extended: false }))
 
 const db = './data/quotes.json'
 
@@ -15,47 +14,48 @@ app.get('/', (req, res) => {
 	res.render('home')
 })
 
+//add a new quote
 app.get('/add', (req, res) => {
 	res.render('add')
 })
 
 app.post('/add', (req, res)=> {
-
 	const title = req.body.title
 	const description = req.body.description
 
-	if (title.trim() === '' && desc.trim() === '') {
-		res.render('add', {error: true})
+	if (title.trim() === '' && description.trim() === '') {
+		res.render('add', { error: true })
 	} else {
 		fs.readFile(db, (err, data) => {
-		if(err) throw err
+			if(err) throw err
 
-		const quotes = JSON.parse(data)
+			const quotes = JSON.parse(data)
 
-		const newQuote = {
-			id: id(),
-			title: title,
-			description: description
-		}
+			const newQuote = {
+				id: id(),
+				title: title,
+				description: description
+			}
 
-		notes.push(newQuote)
+			quotes.push(newQuote)
 
-		fs.writeFile(db, JSON.stringify(quotes), err => {
-			if (err) throw err
+			fs.writeFile(db, JSON.stringify(quotes), err => {
+				if (err) throw err
 
-			res.render('add', { success: true })
+				res.render('add', { success: true })
+			})
 		})
-	})
 
 	} 
 })
 
 app.get('/quotes', (req, res) => {
-
 	fs.readFile(db, (err, data) => {
+		if(err) throw err
+
 		const quotes = JSON.parse(data)
 
-		res.render('quotes', { quoteList: quotes })
+		res.render('quotes', { quotes: quotes })
 	})
 })
 
@@ -86,15 +86,14 @@ app.get('/quotes/:id/delete', (req, res) => {
 		fs.writeFile(db, JSON.stringify(filteredQuotes), err => {
 			if (err) throw err
 
-			res.render('quotes', { id: id, notes: filteredQuotes })
+			res.render('quotes', { id: id, quotes: filteredQuotes })
 		})
 	})
 })
 
 //rest api
 app.get('/api/v1/quotes', (req, res) => {
-
-	fs.readFile('./data/quotes.json', (err, data) => {
+	fs.readFile(db, (err, data) => {
 		if (err) throw err
 
 		const quotes = JSON.parse(data)
@@ -106,11 +105,11 @@ app.get('/api/v1/quotes', (req, res) => {
 app.listen(8000, err  => {
 	if (err) throw err
 
-	console.log('App is running...')
+	console.log('App is running on port 8000...')
 })
 
 
 //generate unique id
 function id () {
-  return '_' + Math.random().toString(36).substr(2, 9);
+	return '_' + Math.random().toString(36).substr(2, 9);
 }

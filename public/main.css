@@ -28,18 +28,22 @@ a {
 }
 
 .logo {
-	padding-left: 20px;
+	display: flex;
+	align-items: center;
+	margin: 0 15px;
+	padding-left: 300px;
 	font-size: 3.5rem;
 }
 
 .logo > a:hover {
-	color: violet;
+	color: blue;
 }
 
 .nav > a {
 	display: inline-block;
 	padding: 5px 15px;
 	font-size: 1.5rem;
+	text-decoration: underline;
 }
 
 .nav > a:hover {
@@ -47,10 +51,16 @@ a {
 }
 
 /* Homepage Styles */
-.content-title {
-	margin-top: 130px;
-	padding: 20px 0 0 20px;
+#introSection {
+	margin-top: 10px;
+	padding: 70px 70px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 425px;
 	font-size: 3.5rem;
+	background: cover url("/public/images/flower.jpg") ;
 }
 
 .featured {
@@ -60,6 +70,53 @@ a {
 	background: aqua;
 	color: black;
 	font-size: 1.5rem;
+}
+
+#imageSection {
+	height: 326px;; 
+    width: 67%;
+    margin: auto;
+}
+
+.card{
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 30%;
+    margin: 23px 20px;
+    height: 209px;
+}
+.card h3{
+    text-align: center;
+    margin: 0 12px;
+    margin-top: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-image{
+    height: 131px;
+    padding: 0 14px;
+    margin: 5px 9px;
+}
+
+.card-image img{
+    height: inherit;
+    height: 131px; 
+    padding: 0 14px;
+}
+
+.card-content{
+    padding: 0 10px;
+}
+
+.card-content p{
+    font-size: 19px;
 }
 
 /* Create Page Styles */
@@ -117,7 +174,11 @@ a {
 	font-size: 1.2rem;
 }
 
-/* Notes Page */
+/* Quotes Page */
+.quote-title {
+	margin: 30px;
+	color: navy;
+}
 .quote-wrapper {
 	max-width: 60%;
 	display: flex;

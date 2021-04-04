@@ -9,11 +9,12 @@ block content
 
 		if error 
 			p.error Your note was not added. Error occured!
+
 		form.form(method='POST' action='/add')
 			label.topic Topic of the Quote
 			input.input(type='text' name='title')
 
 			label.label Quote 
-			textarea.input(rows='10' cols='8' name='desc')
+			textarea.input(rows='10' cols='8' name='description')
 
 			button.btn Add the quote
