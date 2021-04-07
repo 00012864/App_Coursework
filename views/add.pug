@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
 	main.content
-		h1.form-title Add Quotes Form
+		h1.form-title Add quotes form
 
 		if success
 			p.success Your note is added
@@ -11,7 +11,7 @@ block content
 			p.error Your note was not added. Error occured!
 
 		form.form(method='POST' action='/add')
-			label.topic Topic of the Quote
+			label.topic Topic of the quote
 			input.input(type='text' name='title')
 
 			label.label Quote 
